@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "o6VGT91jpq1nISBL3GRObMhOvtiOUTIEnuqbu/7G4oYdXPge/oBFVM1014Oy5/KiHM+C2TVpqdylY2DUfQCiHA==",
+  "success": true,
+  "projectFilePath": "C:\\Git\\CancelationToken\\CancelationToken\\CancelationToken.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Shafi\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}
