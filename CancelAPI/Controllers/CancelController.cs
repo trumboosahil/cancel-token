@@ -14,10 +14,7 @@ namespace CancelAPI.Controllers
     {
         private readonly ILogger<CancelController> _logger;
 
-        private static readonly string[] Summaries = new[]
-         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+       
 
         public CancelController(ILogger<CancelController> logger)
         {
@@ -25,26 +22,18 @@ namespace CancelAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get(CancellationToken token)
+        public async Task<ActionResult> Get(CancellationToken token)
         {
             try
             {
-                Console.WriteLine("CancellationToken");
-                await Task.Delay(10000,token);
-                var rng = new Random();
-                return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                {
-                    Date = DateTime.Now.AddDays(index),
-                    TemperatureC = rng.Next(-20, 55),
-                    Summary = Summaries[rng.Next(Summaries.Length)]
-                })
-                .ToArray();
+                DataAccess dataAccess = new DataAccess();
+                var result = await dataAccess.GetData(token);
+                return Ok(result);
             }
-            catch (TaskCanceledException ex)
+            catch (OperationCanceledException  ex)
             {
-                return null;
+                return StatusCode(420, "Cancel by user");
             }
-            return null;
 
         }
     }
